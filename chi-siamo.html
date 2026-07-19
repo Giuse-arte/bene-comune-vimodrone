@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Siamo — Bene Comune Vimodrone</title>
+    <meta name="description" content="Scopri la storia, i valori e le persone dietro Bene Comune Vimodrone, l'associazione per la tutela del territorio e della comunità.">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/favicon_04.png">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAV BAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/images/LOGO_BCV.png" alt="Logo Bene Comune Vimodrone">
+                <span>Bene Comune Vimodrone</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="chi-siamo.html" class="active">Chi Siamo</a>
+                <a href="temi.html">I Nostri Temi</a>
+                <a href="notizie.html">Notizie</a>
+                <a href="qualita-aria.html">Qualità dell'Aria</a>
+                <a href="documenti.html">Documenti</a>
+                <a href="contatti.html">Contatti</a>
+            </div>
+            <div class="nav-cta">
+                <a href="contatti.html#aderisci" class="btn btn-primary">Aderisci</a>
+            </div>
+            <button class="hamburger" aria-label="Menu" onclick="document.querySelector('.hamburger').classList.toggle('active'); document.querySelector('.mobile-menu').classList.toggle('active');">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="chi-siamo.html" class="active">Chi Siamo</a>
+        <a href="temi.html">I Nostri Temi</a>
+        <a href="notizie.html">Notizie</a>
+        <a href="qualita-aria.html">Qualità dell'Aria</a>
+        <a href="documenti.html">Documenti</a>
+        <a href="contatti.html">Contatti</a>
+        <a href="contatti.html#aderisci" class="btn btn-primary" style="margin-top: 1rem; text-align: center;">Aderisci</a>
+    </div>
+
+    <!-- PAGE HEADER -->
+    <header class="page-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>&gt;</span>
+                <span>Chi Siamo</span>
+            </div>
+            <h1>Chi Siamo</h1>
+            <p>La nostra storia, i valori che ci guidano e le persone che si impegnano ogni giorno per Vimodrone.</p>
+        </div>
+    </header>
+
+    <!-- STORIA SECTION -->
+    <section class="section about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text reveal">
+                    <h2>La Nostra Storia</h2>
+                    <p>Bene Comune Vimodrone nasce nella primavera del 2024 dall'iniziativa di un gruppo eterogeneo di cittadini di Vimodrone — professionisti, pensionati, studenti e attivisti — preoccupati per il progressivo consumo di suolo e desiderosi di portare un contributo concreto alla transizione ecologica locale.</p>
+                    <p>Sentivamo il bisogno di creare uno spazio di discussione e azione indipendente dalle dinamiche dei partiti politici, focalizzato esclusivamente sul benessere del territorio e della comunità.</p>
+                    <p>Oggi siamo una realtà attiva che dialoga con le istituzioni, promuove la scienza partecipata attraverso centraline di monitoraggio e organizza eventi informativi per sensibilizzare la cittadinanza.</p>
+                </div>
+                <div class="about-image reveal reveal-delay-1">
+                    <img src="assets/images/community.jpg" alt="Membri dell'associazione riuniti a Vimodrone">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VALORI SECTION -->
+    <section class="section themes" style="background-color: var(--bianco);">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>I Nostri Valori</h2>
+                <p>I quattro pilastri fondamentali su cui si basa ogni nostra iniziativa e decisione.</p>
+            </div>
+            <div class="themes-grid">
+                <!-- Valore 1 -->
+                <div class="theme-card reveal">
+                    <div style="padding: var(--space-md); text-align: center; font-size: 3rem;">🔍</div>
+                    <div class="theme-card-body" style="text-align: center; padding-top: 0;">
+                        <h3>Trasparenza & Dati Liberi</h3>
+                        <p>Crediamo nelle decisioni basate su dati scientifici aperti. Le nostre centraline per l'aria sono accessibili a chiunque senza filtri.</p>
+                    </div>
+                </div>
+                <!-- Valore 2 -->
+                <div class="theme-card reveal reveal-delay-1">
+                    <div style="padding: var(--space-md); text-align: center; font-size: 3rem;">🤝</div>
+                    <div class="theme-card-body" style="text-align: center; padding-top: 0;">
+                        <h3>Partecipazione Attiva</h3>
+                        <p>I cittadini non devono essere solo spettatori. Favoriamo il coinvolgimento diretto nella pianificazione del territorio (PGT).</p>
+                    </div>
+                </div>
+                <!-- Valore 3 -->
+                <div class="theme-card reveal reveal-delay-2">
+                    <div style="padding: var(--space-md); text-align: center; font-size: 3rem;">🌱</div>
+                    <div class="theme-card-body" style="text-align: center; padding-top: 0;">
+                        <h3>Giustizia Ambientale</h3>
+                        <p>La tutela dell'ambiente e la salute dei cittadini sono diritti fondamentali che vengono prima di qualsiasi interesse economico.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATISTICHE (REUSING STAT-GRID FROM DESIGN SYSTEM) -->
+    <section class="section air-quality">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 style="color: var(--bianco);">La Nostra Associazione in Numeri</h2>
+                <p style="color: rgba(255,255,255,0.8);">L'impatto del nostro impegno a Vimodrone grazie al supporto dei cittadini.</p>
+            </div>
+            <div class="stat-grid reveal">
+                <div class="stat-item">
+                    <div class="number" data-count="150" data-suffix="+">0</div>
+                    <div class="label" style="color: rgba(255,255,255,0.8);">Soci Aderenti</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number" data-count="8" data-suffix="">0</div>
+                    <div class="label" style="color: rgba(255,255,255,0.8);">Centraline Aria Attive</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number" data-count="1200" data-suffix="m">0</div>
+                    <div class="label" style="color: rgba(255,255,255,0.8);">Nuovi Alberi Mappati</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number" data-count="15" data-suffix="">0</div>
+                    <div class="label" style="color: rgba(255,255,255,0.8);">Incontri Pubblici</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LA SQUADRA SECTION -->
+    <section class="section news" style="background-color: var(--crema);">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Il Gruppo di Coordinamento</h2>
+                <p>Le persone che coordinano le nostre aree di intervento e guidano l'associazione.</p>
+            </div>
+            <div class="news-grid">
+                <!-- Coordinatore 1 -->
+                <div class="news-card reveal">
+                    <div style="padding: var(--space-lg) var(--space-md) var(--space-md); text-align: center;">
+                        <div style="width: 120px; height: 120px; border-radius: 50%; background-color: var(--verde-salvia); margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white;">👩‍🌾</div>
+                    </div>
+                    <div class="news-card-body" style="text-align: center;">
+                        <h3>Elena Rossi</h3>
+                        <p style="color: var(--terracotta); font-weight: 600; margin-bottom: 0.5rem;">Presidente & Portavoce</p>
+                        <p>Laureata in Scienze Ambientali, coordina i rapporti con le istituzioni locali e la stampa.</p>
+                    </div>
+                </div>
+                <!-- Coordinatore 2 -->
+                <div class="news-card reveal reveal-delay-1">
+                    <div style="padding: var(--space-lg) var(--space-md) var(--space-md); text-align: center;">
+                        <div style="width: 120px; height: 120px; border-radius: 50%; background-color: var(--terracotta); margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white;">👨‍💻</div>
+                    </div>
+                    <div class="news-card-body" style="text-align: center;">
+                        <h3>Marco Bianchi</h3>
+                        <p style="color: var(--terracotta); font-weight: 600; margin-bottom: 0.5rem;">Referente Qualità dell'Aria</p>
+                        <p>Ingegnere elettronico, progetta e cura la manutenzione delle nostre centraline low-cost PM2.5/PM10.</p>
+                    </div>
+                </div>
+                <!-- Coordinatore 3 -->
+                <div class="news-card reveal reveal-delay-2">
+                    <div style="padding: var(--space-lg) var(--space-md) var(--space-md); text-align: center;">
+                        <div style="width: 120px; height: 120px; border-radius: 50%; background-color: var(--verde-muschio); margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white;">🌳</div>
+                    </div>
+                    <div class="news-card-body" style="text-align: center;">
+                        <h3>Laura Fontana</h3>
+                        <p style="color: var(--terracotta); font-weight: 600; margin-bottom: 0.5rem;">Referente Verde & Territorio</p>
+                        <p>Architetto paesaggista, segue le osservazioni al PGT e coordina le attività di piantumazione e mappatura verde.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION -->
+    <section class="section cta">
+        <div class="container">
+            <div class="reveal">
+                <h2>Vuoi contribuire attivamente?</h2>
+                <p>L'associazione vive del tempo e dell'energia dei suoi volontari. Ognuno può fare la differenza.</p>
+                <div class="cta-buttons">
+                    <a href="contatti.html#aderisci" class="btn btn-white">Aderisci all'Associazione</a>
+                    <a href="contatti.html" class="btn btn-secondary">Scrivici</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="nav-logo">
+                        <img src="assets/images/LOGO_BCV.png" alt="Logo Bene Comune Vimodrone">
+                        <span style="color: white;">BC Vimodrone</span>
+                    </a>
+                    <p>Associazione di cittadini libera e indipendente per la salvaguardia e valorizzazione dei beni comuni di Vimodrone.</p>
+                </div>
+                <div>
+                    <h4>Pagine</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="chi-siamo.html">Chi Siamo</a></li>
+                        <li><a href="temi.html">I Nostri Temi</a></li>
+                        <li><a href="notizie.html">Notizie</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Risorse</h4>
+                    <ul class="footer-links">
+                        <li><a href="qualita-aria.html">Qualità dell'Aria</a></li>
+                        <li><a href="documenti.html">Documenti</a></li>
+                        <li><a href="contatti.html">Contatti</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Seguici</h4>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Instagram">📸</a>
+                        <a href="mailto:info@benecomunevimodrone.it" aria-label="Email">📧</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Bene Comune Vimodrone. Sito statico gratuito ed ecosostenibile.</p>
+                <p>Progettato per la comunità.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script JS -->
+    <script src="script.js"></script>
+</body>
+</html>

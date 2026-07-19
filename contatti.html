@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatti & Aderisci — Bene Comune Vimodrone</title>
+    <meta name="description" content="Contatta l'associazione Bene Comune Vimodrone. Invia una segnalazione, richiedi informazioni o scopri come diventare socio sostenitore.">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/favicon_04.png">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Small layout optimizations for Contatti */
+        .info-card {
+            background-color: var(--crema);
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-lg);
+            border: 1px solid rgba(45,80,22,0.06);
+            height: 100%;
+        }
+        .info-card h3 {
+            margin-bottom: var(--space-sm);
+            color: var(--verde-muschio);
+        }
+        .info-card p {
+            margin-bottom: var(--space-md);
+        }
+        .info-list {
+            margin-top: var(--space-md);
+        }
+        .info-list-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-size: 1.05rem;
+        }
+        .info-list-item span.emoji {
+            font-size: 1.3rem;
+            min-width: 32px;
+            height: 32px;
+            background-color: var(--verde-menta);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* Highlight on target #aderisci */
+        #aderisci:target {
+            border: 2px solid var(--terracotta);
+            background-color: var(--crema);
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-lg);
+            scroll-margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV BAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/images/LOGO_BCV.png" alt="Logo Bene Comune Vimodrone">
+                <span>Bene Comune Vimodrone</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="chi-siamo.html">Chi Siamo</a>
+                <a href="temi.html">I Nostri Temi</a>
+                <a href="notizie.html">Notizie</a>
+                <a href="qualita-aria.html">Qualità dell'Aria</a>
+                <a href="documenti.html">Documenti</a>
+                <a href="contatti.html" class="active">Contatti</a>
+            </div>
+            <div class="nav-cta">
+                <a href="contatti.html#aderisci" class="btn btn-primary">Aderisci</a>
+            </div>
+            <button class="hamburger" aria-label="Menu" onclick="document.querySelector('.hamburger').classList.toggle('active'); document.querySelector('.mobile-menu').classList.toggle('active');">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="chi-siamo.html">Chi Siamo</a>
+        <a href="temi.html">I Nostri Temi</a>
+        <a href="notizie.html">Notizie</a>
+        <a href="qualita-aria.html">Qualità dell'Aria</a>
+        <a href="documenti.html">Documenti</a>
+        <a href="contatti.html" class="active">Contatti</a>
+        <a href="contatti.html#aderisci" class="btn btn-primary" style="margin-top: 1rem; text-align: center;">Aderisci</a>
+    </div>
+
+    <!-- PAGE HEADER -->
+    <header class="page-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>&gt;</span>
+                <span>Contatti</span>
+            </div>
+            <h1>Contatti &amp; Adesione</h1>
+            <p>Scrivici un messaggio per saperne di più o scopri come iscriverti all'associazione.</p>
+        </div>
+    </header>
+
+    <!-- CONTATTI CONTENT GRID -->
+    <section class="section page-content">
+        <div class="container">
+            <div class="about-grid">
+                
+                <!-- Left: Form -->
+                <div class="reveal">
+                    <h2>Scrivici un Messaggio</h2>
+                    <p style="margin-bottom: 2rem;">Hai domande, segnalazioni sul verde o sulla qualità dell'aria? Compila il modulo sottostante, ti risponderemo il prima possibile.</p>
+                    
+                    <form class="contact-form" action="#" method="POST" onsubmit="event.preventDefault(); alert('Grazie! Il tuo messaggio è stato inviato con successo. Ti risponderemo a breve.'); this.reset();">
+                        <div class="form-group">
+                            <label for="name">Nome e Cognome *</label>
+                            <input type="text" id="name" name="name" required placeholder="Inserisci il tuo nome">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Indirizzo Email *</label>
+                            <input type="email" id="email" name="email" required placeholder="esempio@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Oggetto *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="" disabled selected>Seleziona un argomento</option>
+                                <option value="info">Informazioni generali</option>
+                                <option value="segnalazione">Segnalazione ambientale o verde</option>
+                                <option value="aria">Richiesta centralina / Dati Aria</option>
+                                <option value="adesione">Adesione come volontario</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Messaggio *</label>
+                            <textarea id="message" name="message" required placeholder="Scrivi qui il tuo messaggio..."></textarea>
+                        </div>
+                        <div class="form-group" style="display: flex; gap: 0.5rem; align-items: flex-start;">
+                            <input type="checkbox" id="privacy" name="privacy" required style="width: auto; margin-top: 0.35rem;">
+                            <label for="privacy" style="font-size: 0.85rem; font-weight: normal; color: #555;">Accetto il trattamento dei dati personali per le finalità legate alla richiesta di contatto (GDPR).</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">Invia Messaggio</button>
+                    </form>
+                </div>
+
+                <!-- Right: Information & Aderisci -->
+                <div class="reveal reveal-delay-1" style="display: flex; flex-direction: column; gap: var(--space-lg);">
+                    
+                    <!-- General info -->
+                    <div class="info-card">
+                        <h3>Come Raggiungerci</h3>
+                        <p>Siamo un'associazione di volontari digitali, ma ci incontriamo regolarmente di persona a Vimodrone per le nostre assemblee pubbliche.</p>
+                        
+                        <div class="info-list">
+                            <div class="info-list-item">
+                                <span class="emoji">📧</span>
+                                <div>
+                                    <strong>Email Ufficiale:</strong><br>
+                                    <a href="mailto:info@benecomunevimodrone.it" style="color: var(--verde-salvia); font-weight: 600;">info@benecomunevimodrone.it</a>
+                                </div>
+                            </div>
+                            <div class="info-list-item" style="margin-top: 1rem;">
+                                <span class="emoji">📍</span>
+                                <div>
+                                    <strong>Sede degli incontri:</strong><br>
+                                    Auditorium Comunale o spazi civici a Vimodrone (previo annuncio eventi).
+                                </div>
+                            </div>
+                            <div class="info-list-item" style="margin-top: 1rem;">
+                                <span class="emoji">📱</span>
+                                <div>
+                                    <strong>Social:</strong><br>
+                                    Ci trovi attivi su Instagram e Facebook per i report quotidiani.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Membership section -->
+                    <div class="info-card" id="aderisci">
+                        <span class="news-tag urbanistica" style="background-color: var(--verde-menta); color: var(--verde-muschio);">SOCI 2026</span>
+                        <h3>Diventa un Membro</h3>
+                        <p>Aderire a <strong>Bene Comune Vimodrone</strong> significa supportare concretamente l'acquisto di sensori per l'aria e sostenere le spese per le piantumazioni e le azioni legali a tutela del suolo.</p>
+                        <p><strong>Come procedere:</strong></p>
+                        <ol style="list-style-type: decimal; padding-left: 1.25rem; font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: var(--space-md);">
+                            <li>Scarica il modulo cartaceo nella pagina <a href="documenti.html" style="color: var(--verde-salvia); font-weight: 600; text-decoration: underline;">Documenti</a>.</li>
+                            <li>Compilalo con i tuoi dati e firmalo.</li>
+                            <li>Effettua la quota d'iscrizione annuale (10€ ordinario / 25€ sostenitore).</li>
+                            <li>Consegnalo a uno dei referenti durante le assemblee o invialo scannerizzato per email.</li>
+                        </ol>
+                        <a href="documenti.html" class="btn btn-outline" style="width: 100%; justify-content: center;">Scarica Modulo Adesione</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="nav-logo">
+                        <img src="assets/images/LOGO_BCV.png" alt="Logo Bene Comune Vimodrone">
+                        <span style="color: white;">BC Vimodrone</span>
+                    </a>
+                    <p>Associazione di cittadini libera e indipendente per la salvaguardia e valorizzazione dei beni comuni di Vimodrone.</p>
+                </div>
+                <div>
+                    <h4>Pagine</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="chi-siamo.html">Chi Siamo</a></li>
+                        <li><a href="temi.html">I Nostri Temi</a></li>
+                        <li><a href="notizie.html">Notizie</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Risorse</h4>
+                    <ul class="footer-links">
+                        <li><a href="qualita-aria.html">Qualità dell'Aria</a></li>
+                        <li><a href="documenti.html">Documenti</a></li>
+                        <li><a href="contatti.html">Contatti</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Seguici</h4>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Instagram">📸</a>
+                        <a href="mailto:info@benecomunevimodrone.it" aria-label="Email">📧</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Bene Comune Vimodrone. Sito statico gratuito ed ecosostenibile.</p>
+                <p>Progettato per la comunità.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script JS -->
+    <script src="script.js"></script>
+</body>
+</html>

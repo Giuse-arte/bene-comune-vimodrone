@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documenti & Risorse — Bene Comune Vimodrone</title>
+    <meta name="description" content="Scarica i nostri dossier, le osservazioni urbanistiche al PGT, lo statuto dell'associazione e le guide all'autocostruzione delle centraline dell'aria.">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/favicon_04.png">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .doc-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .doc-item {
+            background-color: var(--bianco);
+            border-radius: var(--border-radius);
+            padding: var(--space-md);
+            border: 1px solid rgba(45,80,22,0.08);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            transition: all var(--transition-fast);
+        }
+        .doc-item:hover {
+            transform: translateX(4px);
+            border-color: var(--verde-salvia);
+            box-shadow: var(--shadow-md);
+        }
+        .doc-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .doc-icon {
+            font-size: 2.2rem;
+            background-color: var(--crema);
+            width: 56px;
+            height: 56px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--terracotta);
+            flex-shrink: 0;
+        }
+        .doc-details h3 {
+            font-family: var(--font-body);
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--antracite);
+            margin-bottom: 0.15rem;
+        }
+        .doc-meta {
+            font-size: 0.8rem;
+            color: #777;
+            display: flex;
+            gap: 1rem;
+        }
+        .doc-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .doc-actions {
+            flex-shrink: 0;
+        }
+        @media (max-width: 600px) {
+            .doc-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .doc-actions {
+                width: 100%;
+            }
+            .doc-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        .search-box {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: 2px solid rgba(45,80,22,0.12);
+            border-radius: var(--border-radius);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+        .search-box:focus {
+            outline: none;
+            border-color: var(--verde-salvia);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV BAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/images/LOGO_BCV.png" alt="Logo Bene Comune Vimodrone">
+                <span>Bene Comune Vimodrone</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="chi-siamo.html">Chi Siamo</a>
+                <a href="temi.html">I Nostri Temi</a>
+                <a href="notizie.html">Notizie</a>
+                <a href="qualita-aria.html">Qualità dell'Aria</a>
+                <a href="documenti.html" class="active">Documenti</a>
+                <a href="contatti.html">Contatti</a>
+            </div>
+            <div class="nav-cta">
+                <a href="contatti.html#aderisci" class="btn btn-primary">Aderisci</a>
+            </div>
+            <button class="hamburger" aria-label="Menu" onclick="document.querySelector('.hamburger').classList.toggle('active'); document.querySelector('.mobile-menu').classList.toggle('active');">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="chi-siamo.html">Chi Siamo</a>
+        <a href="temi.html">I Nostri Temi</a>
+        <a href="notizie.html">Notizie</a>
+        <a href="qualita-aria.html">Qualità dell'Aria</a>
+        <a href="documenti.html" class="active">Documenti</a>
+        <a href="contatti.html">Contatti</a>
+        <a href="contatti.html#aderisci" class="btn btn-primary" style="margin-top: 1rem; text-align: center;">Aderisci</a>
+    </div>
+
+    <!-- PAGE HEADER -->
+    <header class="page-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>&gt;</span>
+                <span>Documenti</span>
+            </div>
+            <h1>Documenti & Risorse</h1>
+            <p>Consulta e scarica i nostri dossier di approfondimento, le guide e i materiali ufficiali dell'associazione.</p>
+        </div>
+    </header>
+
+    <!-- ELENCO DOCUMENTI SECTION -->
+    <section class="section about" style="background-color: var(--crema);">
+        <div class="container" style="max-width: 800px;">
+            
+            <div class="reveal">
+                <!-- Search bar -->
+                <input type="text" id="doc-search" class="search-box" placeholder="🔍 Cerca tra i documenti (es. PGT, Statuto, Aria)..." onkeyup="filterDocs()">
+            </div>
+
+            <!-- Documents Container -->
+            <div class="doc-list reveal">
+                
+                <!-- Documento 1 -->
+                <div class="doc-item" data-title="osservazioni pgt piano governo territorio ambiente" data-cat="pgt">
+                    <div class="doc-info">
+                        <div class="doc-icon">📄</div>
+                        <div class="doc-details">
+                            <h3>Osservazioni al PGT di Vimodrone (Giugno 2026)</h3>
+                            <div class="doc-meta">
+                                <span>📅 28 Giugno 2026</span>
+                                <span>⚖️ PDF (2.4 MB)</span>
+                                <span>🏷️ Urbanistica / PGT</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="doc-actions">
+                        <a href="#" class="btn btn-outline" style="padding: 0.5rem 1.25rem; font-size: 0.85rem;" download>Scarica</a>
+                    </div>
+                </div>
+
+                <!-- Documento 2 -->
+                <div class="doc-item" data-title="statuto associazione bene comune vimodrone" data-cat="associazione">
+                    <div class="doc-info">
+                        <div class="doc-icon">📜</div>
+                        <div class="doc-details">
+                            <h3>Statuto Ufficiale dell'Associazione</h3>
+                            <div class="doc-meta">
+                                <span>📅 12 Aprile 2024</span>
+                                <span>⚖️ PDF (850 KB)</span>
+                                <span>🏷️ Trasparenza</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="doc-actions">
+                        <a href="#" class="btn btn-outline" style="padding: 0.5rem 1.25rem; font-size: 0.85rem;" download>Scarica</a>
+                    </div>
+                </div>
+
+                <!-- Documento 3 -->
+                <div class="doc-item" data-title="guida autocostruzione centralina polveri sottili sds011 luftdaten" data-cat="aria" id="aria">
+                    <div class="doc-info">
+                        <div class="doc-icon">🛠️</div>
+                        <div class="doc-details">
+                            <h3>Guida all'Autocostruzione Centralina Aria</h3>
+                            <div class="doc-meta">
+                                <span>📅 15 Maggio 2025</span>
+                                <span>⚖️ PDF (4.2 MB)</span>
+                                <span>🏷️ Aria / Citizen Science</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="doc-actions">
+                        <a href="#" class="btn btn-outline" style="padding: 0.5rem 1.25rem; font-size: 0.85rem;" download>Scarica</a>
+                    </div>
+                </div>
+
+                <!-- Documento 4 -->
+                <div class="doc-item" data-title="dossier alberature e verde urbano vimodrone" data-cat="verde">
+                    <div class="doc-info">
+                        <div class="doc-icon">🌳</div>
+                        <div class="doc-details">
+                            <h3>Dossier Verde Urbano a Vimodrone</h3>
+                            <div class="doc-meta">
+                                <span>📅 8 Luglio 2026</span>
+                                <span>⚖️ PDF (3.1 MB)</span>
+                                <span>🏷️ Ambiente / Verde</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="doc-actions">
+                        <a href="#" class="btn btn-outline" style="padding: 0.5rem 1.25rem; font-size: 0.85rem;" download>Scarica</a>
+                    </div>
+                </div>
+
+                <!-- Documento 5 -->
+                <div class="doc-item" data-title="modulo iscrizione associazione adesione" data-cat="associazione">
+                    <div class="doc-info">
+                        <div class="doc-icon">✍️</div>
+                        <div class="doc-details">
+                            <h3>Modulo di Iscrizione Cartaceo</h3>
+                            <div class="doc-meta">
+                                <span>📅 Gennaio 2026</span>
+                                <span>⚖️ PDF (320 KB)</span>
+                                <span>🏷️ Associazione</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="doc-actions">
+                        <a href="#" class="btn btn-outline" style="padding: 0.5rem 1.25rem; font-size: 0.85rem;" download>Scarica</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION -->
+    <section class="section cta">
+        <div class="container">
+            <div class="reveal">
+                <h2>Sei alla ricerca di un documento specifico?</h2>
+                <p>Se non trovi una delibera o uno studio di cui abbiamo discusso, scrivici direttamente via email.</p>
+                <div class="cta-buttons">
+                    <a href="contatti.html" class="btn btn-white">Richiedi Documento</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="nav-logo">
+                        <img src="assets/images/LOGO_BCV.png" alt="Logo Bene Comune Vimodrone">
+                        <span style="color: white;">BC Vimodrone</span>
+                    </a>
+                    <p>Associazione di cittadini libera e indipendente per la salvaguardia e valorizzazione dei beni comuni di Vimodrone.</p>
+                </div>
+                <div>
+                    <h4>Pagine</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="chi-siamo.html">Chi Siamo</a></li>
+                        <li><a href="temi.html">I Nostri Temi</a></li>
+                        <li><a href="notizie.html">Notizie</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Risorse</h4>
+                    <ul class="footer-links">
+                        <li><a href="qualita-aria.html">Qualità dell'Aria</a></li>
+                        <li><a href="documenti.html">Documenti</a></li>
+                        <li><a href="contatti.html">Contatti</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Seguici</h4>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Instagram">📸</a>
+                        <a href="mailto:info@benecomunevimodrone.it" aria-label="Email">📧</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Bene Comune Vimodrone. Sito statico gratuito ed ecosostenibile.</p>
+                <p>Progettato per la comunità.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script JS & Filter Logic -->
+    <script src="script.js"></script>
+    <script>
+        function filterDocs() {
+            const query = document.getElementById('doc-search').value.toLowerCase();
+            const items = document.querySelectorAll('.doc-item');
+            
+            items.forEach(item => {
+                const text = item.getAttribute('data-title');
+                if (text.includes(query)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

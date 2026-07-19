@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qualità dell'Aria — Bene Comune Vimodrone</title>
+    <meta name="description" content="Scopri la nostra rete di monitoraggio della qualità dell'aria a Vimodrone e simula i livelli di polveri PM2.5 e PM10 in base alle condizioni meteorologiche.">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/favicon_04.png">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Simulator Specific Styles */
+        .simulator-card {
+            background-color: var(--crema);
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-lg);
+            border: 1px solid rgba(45,80,22,0.1);
+            box-shadow: var(--shadow-md);
+            margin-top: var(--space-lg);
+        }
+        .simulator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-lg);
+        }
+        @media (max-width: 768px) {
+            .simulator-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .simulator-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .control-group label {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--verde-muschio);
+        }
+        .simulator-output {
+            background-color: var(--bianco);
+            border-radius: var(--border-radius);
+            padding: var(--space-md);
+            border: 1px solid rgba(45,80,22,0.06);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+        .sim-gauge {
+            text-align: center;
+        }
+        .sim-gauge-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #666;
+            margin-bottom: 0.25rem;
+        }
+        .sim-gauge-value {
+            font-family: var(--font-display);
+            font-size: 2.8rem;
+            color: var(--verde-salvia);
+            line-height: 1;
+        }
+        .sim-gauge-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--border-radius-pill);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+        .status-good { background-color: #D4E7C5; color: #2D5016; }
+        .status-moderate { background-color: #FFF3E0; color: #E65100; }
+        .status-poor { background-color: #FFEBEE; color: #C62828; }
+        
+        .chart-sim-container {
+            height: 120px;
+            display: flex;
+            align-items: flex-end;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 2px solid var(--crema);
+        }
+        .chart-bar-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            justify-content: flex-end;
+        }
+        .chart-bar-fill {
+            width: 40px;
+            background-color: var(--verde-salvia);
+            border-radius: 4px 4px 0 0;
+            transition: height 0.5s ease, background-color 0.5s ease;
+            height: 20%;
+        }
+        .chart-bar-fill.pm10 {
+            background-color: var(--terracotta);
+        }
+        .chart-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV BAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/images/LOGO_BCV.png" alt="Logo Bene Comune Vimodrone">
+                <span>Bene Comune Vimodrone</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="chi-siamo.html">Chi Siamo</a>
+                <a href="temi.html">I Nostri Temi</a>
+                <a href="notizie.html">Notizie</a>
+                <a href="qualita-aria.html" class="active">Qualità dell'Aria</a>
+                <a href="documenti.html">Documenti</a>
+                <a href="contatti.html">Contatti</a>
+            </div>
+            <div class="nav-cta">
+                <a href="contatti.html#aderisci" class="btn btn-primary">Aderisci</a>
+            </div>
+            <button class="hamburger" aria-label="Menu" onclick="document.querySelector('.hamburger').classList.toggle('active'); document.querySelector('.mobile-menu').classList.toggle('active');">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="chi-siamo.html">Chi Siamo</a>
+        <a href="temi.html">I Nostri Temi</a>
+        <a href="notizie.html">Notizie</a>
+        <a href="qualita-aria.html" class="active">Qualità dell'Aria</a>
+        <a href="documenti.html">Documenti</a>
+        <a href="contatti.html">Contatti</a>
+        <a href="contatti.html#aderisci" class="btn btn-primary" style="margin-top: 1rem; text-align: center;">Aderisci</a>
+    </div>
+
+    <!-- PAGE HEADER -->
+    <header class="page-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>&gt;</span>
+                <span>Qualità dell'Aria</span>
+            </div>
+            <h1>Qualità dell'Aria</h1>
+            <p>Il progetto Citizen Science di monitoraggio civico e indipendente dell'aria nel nostro comune.</p>
+        </div>
+    </header>
+
+    <!-- DESCRIPTION SECTION -->
+    <section class="section about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text reveal">
+                    <h2>Rete Civica di Sensori PM2.5 & PM10</h2>
+                    <p>L'inquinamento atmosferico non risparmia l'hinterland milanese. A Vimodrone le centraline ufficiali regionali ARPA sono distanti e non coprono le micro-condizioni dei nostri quartieri adiacenti alle arterie stradali trafficate.</p>
+                    <p>Per questo motivo, come associazione, abbiamo promosso la <strong>Rete Civica di Monitoraggio</strong>. Installiamo piccoli sensori low-cost basati sulla tecnologia ottica laser (SDS011) gestiti dai cittadini stessi sui propri balconi o giardini.</p>
+                    <p>Tutti i sensori inviano misurazioni in tempo reale a reti aperte europee (come Sensor.Community), consentendo a chiunque di verificare la concentrazione di polveri sottili (PM2.5 e PM10) e promuovendo decisioni politiche informate.</p>
+                    
+                    <div style="margin-top: 2rem;">
+                        <a href="documenti.html#aria" class="btn btn-primary">Scarica la Guida per Costruire un Sensore</a>
+                    </div>
+                </div>
+                <div class="about-image reveal reveal-delay-1">
+                    <img src="assets/images/hero.jpg" alt="Rete di sensori dell'aria low-cost">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SIMULATORE ARIA SECTION -->
+    <section class="section themes" style="background-color: var(--bianco);">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Simulatore dell'Aria a Vimodrone</h2>
+                <p>Modifica le condizioni meteorologiche e del traffico per osservare come cambiano le stime delle polveri sottili a livello locale.</p>
+            </div>
+
+            <!-- SIMULATOR PANEL -->
+            <div class="simulator-card reveal">
+                <div class="simulator-grid">
+                    
+                    <!-- Controls Column -->
+                    <div class="simulator-controls">
+                        <h3>⚙️ Variabili Ambientali</h3>
+                        
+                        <div class="control-group">
+                            <label for="sim-season">Stagione</label>
+                            <select id="sim-season" onchange="runSimulation()">
+                                <option value="winter">Inverno (Riscaldamenti attivi, stabilità termica)</option>
+                                <option value="summer">Estate (Riscaldamenti spenti, ventoso)</option>
+                            </select>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="sim-traffic">Traffico & Orario</label>
+                            <select id="sim-traffic" onchange="runSimulation()">
+                                <option value="rush">Ora di punta mattutina (07:30 - 09:00)</option>
+                                <option value="midday">Pomeriggio (12:00 - 16:00)</option>
+                                <option value="night">Notte fonda (01:00 - 05:00)</option>
+                            </select>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="sim-weather">Condizioni Meteo</label>
+                            <select id="sim-weather" onchange="runSimulation()">
+                                <option value="fog">Nebbia stabile / Assenza di vento</option>
+                                <option value="wind">Vento forte / Giornata limpida</option>
+                                <option value="rain">Pioggia battente (Lavaggio atmosferico)</option>
+                            </select>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="sim-location">Punto di Rilevamento</label>
+                            <select id="sim-location" onchange="runSimulation()">
+                                <option value="roadside">Via Dante (Fronte strada trafficata)</option>
+                                <option value="park">Parco della Martesana (Area alberata)</option>
+                                <option value="residential">Centro Storico (Pedonale / Residenziale)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Output/Visualization Column -->
+                    <div class="simulator-output">
+                        <h3 class="text-center">📊 Dati Stimati Simulati</h3>
+                        
+                        <div class="simulator-grid" style="grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            
+                            <!-- PM2.5 Gauge -->
+                            <div class="sim-gauge">
+                                <div class="sim-gauge-title">PM2.5</div>
+                                <div class="sim-gauge-value" id="val-pm25">24 µg/m³</div>
+                                <span class="sim-gauge-status status-moderate" id="status-pm25">Moderata</span>
+                                <div style="font-size: 0.75rem; color:#888; margin-top:0.5rem;">Soglia annuale OMS: 5 µg/m³</div>
+                            </div>
+                            
+                            <!-- PM10 Gauge -->
+                            <div class="sim-gauge">
+                                <div class="sim-gauge-title">PM10</div>
+                                <div class="sim-gauge-value" id="val-pm10">38 µg/m³</div>
+                                <span class="sim-gauge-status status-moderate" id="status-pm10">Moderata</span>
+                                <div style="font-size: 0.75rem; color:#888; margin-top:0.5rem;">Soglia annuale OMS: 15 µg/m³</div>
+                            </div>
+
+                        </div>
+
+                        <!-- Mini bar chart representation -->
+                        <div class="chart-sim-container">
+                            <div class="chart-bar-col">
+                                <div class="chart-bar-fill pm25" id="bar-pm25" style="height: 48%;"></div>
+                                <div class="chart-label">PM2.5</div>
+                            </div>
+                            <div class="chart-bar-col">
+                                <div class="chart-bar-fill pm10" id="bar-pm10" style="height: 63%;"></div>
+                                <div class="chart-label">PM10</div>
+                            </div>
+                        </div>
+
+                        <div style="font-size: 0.85rem; color: #555; text-align: center; font-style: italic;" id="sim-explanation">
+                            Le condizioni invernali stabili con nebbia accumulano gli inquinanti al suolo, incrementando le polveri.
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION -->
+    <section class="section cta">
+        <div class="container">
+            <div class="reveal">
+                <h2>Vuoi ospitare un sensore sul tuo balcone?</h2>
+                <p>Ti forniamo noi il kit di sensori pre-configurato e ti aiutiamo a installarlo. Contribuisci anche tu!</p>
+                <div class="cta-buttons">
+                    <a href="contatti.html#aderisci" class="btn btn-white">Richiedi un Sensore</a>
+                    <a href="documenti.html" class="btn btn-secondary">Consulta i Dati Storici</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="nav-logo">
+                        <img src="assets/images/LOGO_BCV.png" alt="Logo Bene Comune Vimodrone">
+                        <span style="color: white;">BC Vimodrone</span>
+                    </a>
+                    <p>Associazione di cittadini libera e indipendente per la salvaguardia e valorizzazione dei beni comuni di Vimodrone.</p>
+                </div>
+                <div>
+                    <h4>Pagine</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="chi-siamo.html">Chi Siamo</a></li>
+                        <li><a href="temi.html">I Nostri Temi</a></li>
+                        <li><a href="notizie.html">Notizie</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Risorse</h4>
+                    <ul class="footer-links">
+                        <li><a href="qualita-aria.html">Qualità dell'Aria</a></li>
+                        <li><a href="documenti.html">Documenti</a></li>
+                        <li><a href="contatti.html">Contatti</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Seguici</h4>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Instagram">📸</a>
+                        <a href="mailto:info@benecomunevimodrone.it" aria-label="Email">📧</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Bene Comune Vimodrone. Sito statico gratuito ed ecosostenibile.</p>
+                <p>Progettato per la comunità.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script JS & Simulator Logic -->
+    <script src="script.js"></script>
+    <script>
+        function runSimulation() {
+            const season = document.getElementById('sim-season').value;
+            const traffic = document.getElementById('sim-traffic').value;
+            const weather = document.getElementById('sim-weather').value;
+            const location = document.getElementById('sim-location').value;
+
+            // Base values
+            let pm25 = 10;
+            let pm10 = 18;
+            let explanation = "";
+
+            // Season multipliers / additions
+            if (season === 'winter') {
+                pm25 += 15;
+                pm10 += 22;
+                explanation += "Il riscaldamento domestico invernale e l'inversione termica bloccano le polveri al suolo. ";
+            } else {
+                pm25 += 2;
+                pm10 += 6;
+                explanation += "Le temperature estive riducono l'uso di riscaldamenti, ma la siccità favorisce il sollevamento delle polveri stradali. ";
+            }
+
+            // Traffic impacts
+            if (traffic === 'rush') {
+                pm25 += 18;
+                pm10 += 28;
+                explanation += "L'alta intensità dei veicoli pendolari genera forti emissioni allo scarico e da frenata. ";
+            } else if (traffic === 'midday') {
+                pm25 += 6;
+                pm10 += 12;
+                explanation += "Le ore centrali del giorno vedono un traffico costante ma più fluido. ";
+            } else {
+                pm25 -= 4;
+                pm10 -= 6;
+                explanation += "Il traffico notturno quasi nullo riduce gli inquinanti diretti. ";
+            }
+
+            // Weather impacts
+            if (weather === 'fog') {
+                pm25 += 12;
+                pm10 += 15;
+                explanation += "L'assenza di vento e la nebbia intrappolano gli inquinanti nell'aria respirabile. ";
+            } else if (weather === 'wind') {
+                pm25 = Math.max(3, pm25 - 15);
+                pm10 = Math.max(5, pm10 - 20);
+                explanation += "Le forti correnti d'aria favoriscono una rapida dispersione ed eccellente ricambio. ";
+            } else { // rain
+                pm25 = Math.max(2, pm25 - 18);
+                pm10 = Math.max(4, pm10 - 25);
+                explanation += "La pioggia cattura le polveri in sospensione, lavando l'atmosfera. ";
+            }
+
+            // Location impacts
+            if (location === 'roadside') {
+                pm25 += 8;
+                pm10 += 14;
+                explanation += "In prossimità di via Dante l'esposizione diretta alle auto è massima.";
+            } else if (location === 'park') {
+                pm25 = Math.max(2, pm25 - 6);
+                pm10 = Math.max(4, pm10 - 10);
+                explanation += "La vegetazione del Parco Martesana funge da barriera naturale abbattendo le polveri.";
+            } else {
+                pm25 = Math.max(2, pm25 - 2);
+                pm10 = Math.max(4, pm10 - 4);
+                explanation += "Il centro storico pedonalizzato ha emissioni locali ridotte rispetto alle tangenziali.";
+            }
+
+            // Bounds checks
+            pm25 = Math.round(Math.max(2, pm25));
+            pm10 = Math.round(Math.max(4, pm10));
+
+            // Write values
+            document.getElementById('val-pm25').innerText = pm25 + " µg/m³";
+            document.getElementById('val-pm10').innerText = pm10 + " µg/m³";
+
+            // Update statuses and colors
+            updateStatus('pm25', pm25, 5, 25);
+            updateStatus('pm10', pm10, 15, 45);
+
+            // Update explanations
+            document.getElementById('sim-explanation').innerText = explanation;
+        }
+
+        function updateStatus(type, value, limitGood, limitMod) {
+            const labelEl = document.getElementById('status-' + type);
+            const barEl = document.getElementById('bar-' + type);
+
+            // Compute heights (cap at 100%)
+            let percentage = Math.min(100, (value / 80) * 100);
+            barEl.style.height = percentage + '%';
+
+            if (value <= limitGood) {
+                labelEl.innerText = "Buona";
+                labelEl.className = "sim-gauge-status status-good";
+                barEl.style.backgroundColor = "#4CAF50";
+            } else if (value <= limitMod) {
+                labelEl.innerText = "Moderata";
+                labelEl.className = "sim-gauge-status status-moderate";
+                barEl.style.backgroundColor = "#FFC107";
+            } else {
+                labelEl.innerText = "Elevata";
+                labelEl.className = "sim-gauge-status status-poor";
+                barEl.style.backgroundColor = "#FF5722";
+            }
+        }
+
+        // Run simulation on load
+        document.addEventListener('DOMContentLoaded', () => {
+            runSimulation();
+        });
+    </script>
+</body>
+</html>
