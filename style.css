@@ -1133,7 +1133,7 @@ p {
 /* Variante generica page-header con immagine di sfondo, stesso pattern di .hero */
 .page-header-image {
   background: var(--gradient-hero);
-  min-height: 60vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
 }
