@@ -1130,9 +1130,12 @@ p {
   color: var(--bianco);
 }
 
-/* Variante page-header con immagine come sfondo (Chi Siamo), stesso pattern di .hero */
+/* Variante generica page-header con immagine di sfondo, stesso pattern di .hero */
 .page-header-image {
   background: var(--gradient-hero);
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
 }
 
 .page-header-image::before {
@@ -1142,7 +1145,7 @@ p {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('assets/images/Interno chiesa del pilastrello con scritta.png') center/cover no-repeat;
+  background: var(--header-bg-image) center/cover no-repeat;
   opacity: 0.45;
 }
 
