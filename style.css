@@ -1132,7 +1132,7 @@ p {
 
 /* Variante page-header con immagine come sfondo diretto (Chi Siamo) */
 .page-header-image {
-  background: url('assets/images/Albero_acquarello.png') center/cover no-repeat;
+  background: url('assets/images/ALbero_acquarello.png') center/cover no-repeat;
 }
 
 /* Overlay scuro per leggibilità testo, sopra l'immagine */
