@@ -1091,38 +1091,11 @@ p {
 
 /* === Page Header (internal pages) === */
 .page-header {
-    position: relative;
-    min-height: 420px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-    color: #fff;
-
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.page-header::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,.45);
-}
-
-.page-header .container {
-    position: relative;
-    z-index: 2;
-}
-
-.page-header h1,
-.page-header p,
-.page-header .breadcrumb,
-.page-header .breadcrumb a {
-    color: #fff;
+  background: var(--gradient-hero);
+  padding: calc(72px + var(--space-2xl)) 0 var(--space-2xl);
+  color: var(--bianco);
+  text-align: center;
+  position: relative;
 }
 
 .page-header h1 {
@@ -1155,6 +1128,24 @@ p {
 
 .breadcrumb a:hover {
   color: var(--bianco);
+}
+
+/* Variante page-header con immagine di sfondo (usata in Chi Siamo) */
+.page-header-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('assets/images/Albero_acquarello.png') center/cover no-repeat;
+  opacity: 0.45;
+}
+
+/* Contenuto sempre sopra l'eventuale immagine di sfondo */
+.page-header .container {
+  position: relative;
+  z-index: 2;
 }
 
 /* === Content styles for internal pages === */
@@ -1367,9 +1358,4 @@ p {
     align-items: baseline;
     gap: 0.5rem;
   }
-}
-
-/* Immagine della pagina Chi Siamo */
-.header-chi-siamo {
-    background-image: url("../images/ALbero_acquarello.jpg");
 }
