@@ -1146,6 +1146,13 @@ p {
   opacity: 0.45;
 }
 
+/* Aumenta l'ampiezza verticale solo per l'header con immagine (Chi Siamo) */
+.page-header-image {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+}
+
 /* Contenuto sempre sopra l'immagine e l'overlay */
 .page-header .container {
   position: relative;
